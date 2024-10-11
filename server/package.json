@@ -22,7 +22,8 @@
     "morgan": "^1.10.0",
     "prisma": "^5.20.0",
     "react-hot-toast": "^2.4.1",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "vercel": "^37.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
