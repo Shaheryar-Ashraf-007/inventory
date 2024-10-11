@@ -1,0 +1,16 @@
+[
+  {
+    "productId": "some-uuid-1",
+    "name": "Product A",
+    "price": 100.0,
+    "rating": 4.5,
+    "stockQuantity": 50
+  },
+  {
+    "productId": "some-uuid-2",
+    "name": "Product B",
+    "price": 150.0,
+    "rating": 4.0,
+    "stockQuantity": 30
+  }
+]

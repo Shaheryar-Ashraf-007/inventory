@@ -1,0 +1,16 @@
+[
+  {
+    "userId": "3b0fd66b-a4d6-4d95-94e4-01940c99aedb",
+    "name": "Carly",
+    "email": "cvansalzberger0@cisco.com",
+    "phoneNumber": "+92 3084616140",
+    "salaryAmount": 30000,
+    "paidAmount": 10000,
+    "remainingAmount": 20000,
+    "startDate": "2024-10-01",
+    "endDate": "2024-10-30",
+    "timestamp": "2024-10-01T09:03:00Z" ,
+    "petrolExpense": 2000,
+    "otherExpense":"personal Expense"
+  }
+]

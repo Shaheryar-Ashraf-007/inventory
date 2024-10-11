@@ -1,0 +1,15 @@
+[
+  {
+    "userId": "e1f2g3h4-i5j6-k7l8-m9n0-o1p2q3r4s5t6",
+    "name": "Carly",
+    "email": "cvansalzberger0@cisco.com",
+    "phoneNumber": "+92 3084616140",
+    "quantity": 10,
+    "unitCost": 10,
+    "totalAmount": 25000,
+    "paidAmount": 15000,
+    "remainingAmount": 10000,
+    "timestamp" : "2024-10-01T09:03:00Z"
+  }
+
+]

@@ -1,0 +1,12 @@
+[
+    {
+      "expenseSummaryId": "summary-1",
+      "totalExpense": 1000.0,
+      "date": "2023-09-30T00:00:00.000Z"
+    },
+    {
+      "expenseSummaryId": "summary-2",
+      "totalExpense": 500.0,
+      "date": "2023-09-29T00:00:00.000Z"
+    }
+  ]

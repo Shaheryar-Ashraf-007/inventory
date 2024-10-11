@@ -1,0 +1,104 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  userId          String  @id @default(uuid())
+  name            String
+  email           String  @unique
+  phoneNumber     String?
+  unitCost        Int    @default(0) // Optional field
+  quantity        Int     @default(0) // Default value
+  totalAmount     Float   @default(0.0) // Default value
+  paidAmount      Float   @default(0.0) // Default value
+  remainingAmount Float   @default(0.0)
+  timestamp       DateTime @default(now()) // Default value
+}
+
+model Salaries {
+  userId          String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  phoneNumber     String?  // Optional field
+  salaryAmount    Float    @default(0.0) // Default value
+  paidAmount      Float    @default(0.0) // Default value
+  remainingAmount Float    @default(0.0) // Default value
+  startDate       DateTime
+  endDate         DateTime
+  petrolExpense   Int?     @default(0)
+  otherExpense    String
+  timestamp       DateTime @default(now())
+}
+
+model Products {
+  productId     String      @id @default(uuid())
+  name          String
+  price         Float
+  rating        Float?
+  stockQuantity Int
+  Sales         Sale[]
+  Purchases     Purchase[]
+}
+
+model Sale {
+  saleId      String   @id @default(uuid())
+  productId   String
+  timestamp   DateTime @default(now())
+  quantity    Int
+  unitPrice   Float
+  totalAmount Float
+  product     Products @relation(fields: [productId], references: [productId])
+}
+
+model Purchase {
+  purchaseId   String   @id @default(uuid())
+  productId    String
+  timestamp    DateTime @default(now())
+  quantity     Int
+  unitCost     Float
+  totalCost    Float
+  totalAmount  Float
+  product      Products @relation(fields: [productId], references: [productId])
+}
+model Expenses {
+  expenseId String   @id @default(uuid())
+  category  String
+  amount    Float
+  timestamp DateTime @default(now())
+}
+
+model SalesSummary {
+  salesSummaryId   String   @id @default(uuid())
+  totalValue       Float
+  changePercentage  Float?
+  date             DateTime @default(now())
+}
+
+model PurchaseSummary {
+  purchaseSummaryId String   @id @default(uuid())
+  totalPurchased    Float
+  changePercentage  Float?
+  date              DateTime @default(now())
+}
+
+model ExpenseSummary {
+  expenseSummaryId  String   @id @default(uuid())
+  totalExpense      Float
+  date              DateTime @default(now())
+  ExpenseByCategory ExpenseByCategory[]
+}
+
+model ExpenseByCategory {
+  expenseByCategoryId String         @id @default(uuid())
+  expenseSummaryId    String
+  category            String
+  amount              BigInt
+  date                DateTime @default(now())
+  expenseSummary      ExpenseSummary @relation(fields: [expenseSummaryId], references: [expenseSummaryId])
+}

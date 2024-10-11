@@ -1,0 +1,16 @@
+[
+    {
+      "expenseByCategoryId": "category-1",
+      "expenseSummaryId": "summary-1",  
+      "category": "Food",
+      "amount": 300,
+      "date": "2023-09-30T00:00:00.000Z"
+    },
+    {
+      "expenseByCategoryId": "category-2",
+      "expenseSummaryId": "summary-2",  
+      "category": "Transport",
+      "amount": 200,
+      "date": "2023-09-29T00:00:00.000Z"
+    }
+  ]
