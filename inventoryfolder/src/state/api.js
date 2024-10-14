@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Create the API slice
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000"}),
   reducerPath: "api",
   tagTypes: ["DashboardMetrics", "Products", "Users", "Salaries", "Expenses", "Purchases"],
   endpoints: (build) => ({

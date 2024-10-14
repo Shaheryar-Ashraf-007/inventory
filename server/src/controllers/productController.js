@@ -44,17 +44,25 @@ export const deleteProduct = async (req, res) => {
 
   // Check if ID is valid
   if (!productId) {
-      return res.status(400).json({ message: "Product ID is required" });
+    return res.status(400).json({ message: "Product ID is required" });
   }
 
-  // Proceed with deletion logic...
   try {
-      const deletedProduct = await prisma.products.delete({
-          where: { productId: productId }, // Ensure this matches your database schema
-      });
-      res.status(200).json(deletedProduct);
+    // Check for related sales or records
+    const relatedSales = await prisma.sale.findMany({
+      where: { productId: productId }
+    });
+
+    if (relatedSales.length > 0) {
+      return res.status(400).json({ message: "Cannot delete product. It has related sales." });
+    }
+
+    const deletedProduct = await prisma.products.delete({
+      where: { productId: productId }, // Ensure this matches your database schema
+    });
+    res.status(200).json(deletedProduct);
   } catch (error) {
-      console.error("Error deleting product:", error);
-      res.status(500).json({ message: "Failed to delete product" });
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: error?.message || "Failed to delete product" });
   }
 };

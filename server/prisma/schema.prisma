@@ -25,10 +25,10 @@ model Salaries {
   userId          String   @id @default(uuid())
   name            String
   email           String   @unique
-  phoneNumber     String?  // Optional field
-  salaryAmount    Float    @default(0.0) // Default value
-  paidAmount      Float    @default(0.0) // Default value
-  remainingAmount Float    @default(0.0) // Default value
+  phoneNumber     String?  
+  salaryAmount    Float    @default(0.0) 
+  paidAmount      Float    @default(0.0) 
+  remainingAmount Float    @default(0.0) 
   startDate       DateTime
   endDate         DateTime
   petrolExpense   Int?     @default(0)

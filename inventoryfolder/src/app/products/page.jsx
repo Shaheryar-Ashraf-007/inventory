@@ -44,6 +44,7 @@ const Products = () => {
       setDeletingProductId(productId);
       console.log('Attempting to delete product with ID:', productId);
       await deleteProduct(productId).unwrap();
+      console.log("delete successfully")
       refetch();
       setErrorMessage(""); 
     } catch (error) {

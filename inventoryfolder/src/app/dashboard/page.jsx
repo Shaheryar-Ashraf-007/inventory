@@ -22,12 +22,13 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/dashboard`;
-        console.log("Fetching data from:", url); 
+        const baseUrl = "http://localhost:8000";
+        console.log("Base URL:", baseUrl); // Log the base URL
+        const url = `${baseUrl}/dashboard`;
+        console.log("Fetching data from:", url); ; 
 
         const response = await fetch(url, { 
           method: 'GET',
-
           headers: {
             'Content-Type': 'application/json',
           },
@@ -38,12 +39,12 @@ const Dashboard = () => {
         }
 
         const data = await response.json();
-        console.log(data); // Log the received data
+        console.log(data); 
         setDashboardData(data);
-        setIsLoading(false);
       } catch (e) {
         console.error("Failed to fetch dashboard data:", e);
         setError("Failed to load dashboard data. Please try again later.");
+      } finally {
         setIsLoading(false);
       }
     };
@@ -82,11 +83,9 @@ const Dashboard = () => {
             changePercentage: dashboardData.salesSummary.discountPercentage,
             IconComponent: TrendingDown,
           },
-          
         ]}
       />
-
-<StatCard
+      <StatCard
         title="Customer & Expenses"
         primaryIcon={<Package className="text-blue-600 w-6 h-6" />}
         dateRange="01 - 30 October 2024"
@@ -105,8 +104,7 @@ const Dashboard = () => {
           },
         ]}
       />
-
-<StatCard
+      <StatCard
         title="Dues & Pending Orders"
         primaryIcon={<CheckCircle className="text-blue-600 w-6 h-6" />}
         dateRange="01 - 30 October 2024"
