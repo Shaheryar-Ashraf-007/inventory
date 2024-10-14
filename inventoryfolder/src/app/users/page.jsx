@@ -255,15 +255,15 @@ const Users = () => {
               </div>
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Total Paid Amount</p>
-                <p className="text-lg font-semibold text-green-600">${summaryData.totalPaidAmount.toFixed(2)}</p>
+                <p className="text-lg font-semibold text-green-600">Rs {summaryData.totalPaidAmount.toFixed(2)}</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Total Remaining Amount</p>
-                <p className="text-lg font-semibold text-orange-600">${summaryData.totalRemainingAmount.toFixed(2)}</p>
+                <p className="text-lg font-semibold text-orange-600">Rs {summaryData.totalRemainingAmount.toFixed(2)}</p>
               </div>
               <div className="p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-600">Grand Total</p>
-                <p className="text-xl font-bold text-blue-600">${summaryData.grandTotal.toFixed(2)}</p>
+                <p className="text-xl font-bold text-blue-600">Rs {summaryData.grandTotal.toFixed(2)}</p>
               </div>
             </div>
           </div>

@@ -18,10 +18,7 @@ export const getExpensesByCategory = async (req, res) => {
       },
     });
 
-    if (expenses.length === 0) {
-      return res.status(404).json({ message: "No expenses found" });
-    }
-
+    // Return an empty array instead of 404
     res.json(expenses);
   } catch (error) {
     console.error("Error retrieving expenses:", error.message);

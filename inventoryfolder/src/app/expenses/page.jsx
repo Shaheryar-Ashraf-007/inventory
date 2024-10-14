@@ -58,13 +58,17 @@ const Expenses = () => {
         refetch();
       } catch (error) {
         console.error("Failed to delete expense:", error);
-        setErrorMessage("Failed to delete expense. It may already be deleted or not found.");
+        if (error.status === 404) {
+          setErrorMessage("Expense not found. It may have already been deleted.");
+        } else {
+          setErrorMessage("Failed to delete expense. Please try again.");
+        }
       }
     }
   };
 
   const expenses = React.useMemo(() => {
-    if (!rawExpenses) return [];
+    if (!rawExpenses || !Array.isArray(rawExpenses)) return [];
     return rawExpenses.map((expense, index) => ({
       serial: index + 1,
       expenseId: expense.expenseId || expense.id || expense._id,
@@ -76,20 +80,17 @@ const Expenses = () => {
 
   const totalAmount = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
-  // Calculate category-wise totals
   const categoryWiseTotals = expenses.reduce((acc, expense) => {
     acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
     return acc;
   }, {});
 
-  // Calculate monthly totals
   const monthlyTotals = expenses.reduce((acc, expense) => {
     const month = new Date(expense.timestamp).toLocaleString('default', { month: 'long', year: 'numeric' });
     acc[month] = (acc[month] || 0) + expense.amount;
     return acc;
   }, {});
 
-  // Excel export function
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(expenses);
     const wb = XLSX.utils.book_new();
@@ -125,12 +126,18 @@ const Expenses = () => {
         </button>
       </div>
       <ErrorBoundary FallbackComponent={({ error }) => <div>Error: {error.message}</div>}>
-        <DataGrid
-          rows={expenses}
-          columns={columns(handleDeleteExpense)} 
-          getRowId={(row) => row.expenseId}
-          className="bg-white shadow rounded-lg border border-gray-200 mt-5 !text-gray-700"
-        />
+        {expenses.length === 0 ? (
+          <div className="text-center text-gray-500 py-4">
+            No expenses found. Create a new expense to get started.
+          </div>
+        ) : (
+          <DataGrid
+            rows={expenses}
+            columns={columns(handleDeleteExpense)} 
+            getRowId={(row) => row.expenseId}
+            className="bg-white shadow rounded-lg border border-gray-200 mt-5 !text-gray-700"
+          />
+        )}
       </ErrorBoundary>
 
       <div className="mt-8 bg-white shadow rounded-lg p-6 border border-gray-200">
@@ -138,30 +145,33 @@ const Expenses = () => {
         <p className="text-lg font-bold text-green-600">Rs {totalAmount.toFixed(2)}</p>
       </div>
 
-      <div className="mt-8 bg-white shadow rounded-lg p-6 border border-gray-200">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Category-wise Totals</h2>
-        <ul className="list-disc pl-5">
-          {Object.entries(categoryWiseTotals).map(([category, amount]) => (
-            <li key={category} className="flex justify-between">
-              <span className="text-gray-600">{category}</span>
-              <span className="font-bold">Rs {amount.toFixed(2)}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {Object.keys(categoryWiseTotals).length > 0 && (
+        <div className="mt-8 bg-white shadow rounded-lg p-6 border border-gray-200">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800">Category-wise Totals</h2>
+          <ul className="list-disc pl-5">
+            {Object.entries(categoryWiseTotals).map(([category, amount]) => (
+              <li key={category} className="flex justify-between">
+                <span className="text-gray-600">{category}</span>
+                <span className="font-bold">Rs {amount.toFixed(2)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      {/* Monthly Summary Section */}
-      <div className="mt-8 bg-white shadow rounded-lg p-6 border border-gray-200">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Monthly Summary</h2>
-        <ul className="list-disc pl-5">
-          {Object.entries(monthlyTotals).map(([month, amount]) => (
-            <li key={month} className="flex justify-between">
-              <span className="text-gray-600">{month}</span>
-              <span className="font-bold">Rs {amount.toFixed(2)}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {Object.keys(monthlyTotals).length > 0 && (
+        <div className="mt-8 bg-white shadow rounded-lg p-6 border border-gray-200">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800">Monthly Summary</h2>
+          <ul className="list-disc pl-5">
+            {Object.entries(monthlyTotals).map(([month, amount]) => (
+              <li key={month} className="flex justify-between">
+                <span className="text-gray-600">{month}</span>
+                <span className="font-bold">Rs {amount.toFixed(2)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <CreateExpenseModal 
         open={isModalOpen} 
