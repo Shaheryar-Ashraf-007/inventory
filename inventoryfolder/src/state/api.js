@@ -2,9 +2,16 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Create the API slice
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000"}),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000" }),
   reducerPath: "api",
-  tagTypes: ["DashboardMetrics", "Products", "Users", "Salaries", "Expenses", "Purchases"],
+  tagTypes: [
+    "DashboardMetrics",
+    "Products",
+    "Users",
+    "Salaries",
+    "Expenses",
+    "Purchases",
+  ],
   endpoints: (build) => ({
     // Get dashboard metrics
     getDashboardMetrics: build.query({
@@ -68,7 +75,6 @@ export const api = createApi({
       }),
       invalidatesTags: ["Users"],
     }),
-
 
     // Get salaries with optional search
     getSalaries: build.query({

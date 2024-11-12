@@ -1,0 +1,6 @@
+inventoryfolder/node_modules/
+server/node_modules/
+inventoryfolder/dist
+server/dist
+server/.evn
+client/.next/

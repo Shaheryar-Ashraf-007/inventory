@@ -20,7 +20,7 @@ const Users = () => {
   const columns = useMemo(() => [
     { field: "serial", headerName: "S.No", width: 70, sortable: false },
     { field: "userId", headerName: "ID", width: 220, sortable: true },
-    { field: "name", headerName: "Employee Name", width: 200, sortable: true },
+    { field: "name", headerName: "Customer Name", width: 200, sortable: true },
     { field: "email", headerName: "Email", width: 220, sortable: true },
     { field: "phoneNumber", headerName: "Phone Number", width: 150, sortable: true },
     { field: "unitCost", headerName: "Unit Cost", width: 150, sortable: true },
@@ -42,7 +42,7 @@ const Users = () => {
         </button>
       ),
     },
-  ], []);
+  ] , []);
 
   const users = useMemo(() => {
     if (!rawUsers) return [];
