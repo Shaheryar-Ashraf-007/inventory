@@ -1,4 +1,4 @@
-export default {
+const module ={
     apps: [
       {
         name: "inventory-management-system-server",
@@ -11,3 +11,4 @@ export default {
       },
     ],
   };
+  export default module
