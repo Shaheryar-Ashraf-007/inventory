@@ -1,9 +1,9 @@
-module.export= {
+module.exports = {
     apps: [
       {
         name: "inventory-management-system-server",
-        script: "npm",
-        args: "run dev",
+        script: "nodemon",
+        args: "src/index.js",
         env: {
           NODE_ENV: "development",
           ENV_VAR1: "environment-variable",
