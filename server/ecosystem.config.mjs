@@ -1,6 +1,6 @@
 export default {
   apps: [{
-    name: "inventory-server",
+    name: "inventory-management-system-server",
     script: "./src/index.js",  // or your main server file path
     watch: true,
     env: {
