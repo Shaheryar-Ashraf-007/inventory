@@ -1,7 +1,7 @@
-const config = {
+module.exports = {
     apps: [
       {
-        name: "inventory-management",
+        name: "inventory-management-system-server",
         script: "npm",
         args: "run dev",
         env: {
@@ -11,5 +11,3 @@ const config = {
       },
     ],
   };
-  
-  module.exports = config;
