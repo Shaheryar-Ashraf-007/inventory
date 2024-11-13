@@ -1,4 +1,4 @@
-export default {
+module.export= {
     apps: [
       {
         name: "inventory-management-system-server",
