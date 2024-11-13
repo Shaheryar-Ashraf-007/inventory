@@ -2,8 +2,8 @@ export default {
     apps: [
       {
         name: "inventory-management-system-server",
-        script: "npm",
-        args: "src/index.js",
+        script: "src/index.js",
+        interpreter: "nodemon", 
         env: {
           NODE_ENV: "development",
           ENV_VAR1: "environment-variable",
