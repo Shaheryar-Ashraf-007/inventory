@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     apps: [
       {
         name: "inventory-management",
@@ -11,3 +11,5 @@ module.exports = {
       },
     ],
   };
+  
+  module.exports = config;
