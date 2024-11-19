@@ -1,7 +1,7 @@
-module.exports = {
+export default {
   apps: [{
     name: "inventory-management-system-server",
-    script: "./src/index.js", // Path to your script file
+    script: "./src/index.js",
     watch: true,
     env: {
       "NODE_ENV": "development",
@@ -11,3 +11,4 @@ module.exports = {
     }
   }]
 }
+
