@@ -1,7 +1,7 @@
 export default {
   apps: [{
     name: "inventory-management-system-server",
-    script: "./src/index.js",
+    script: "/root/inventory/server/src/index.js",
     watch: true,
     env: {
       "NODE_ENV": "development",
